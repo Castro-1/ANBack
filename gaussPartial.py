@@ -1,8 +1,8 @@
 from numpy import array, zeros, fabs, linalg
 
-a = array([[5.4,-3.2,8.1],[17,21,-22],[5,-4,1]], float)
+a = array([[9,-6,6],[2,-1,4],[7,-8,41]], float)
 #the b matrix constant terms of the equations 
-b = array([13,25,-8], float)
+b = array([100,200,100], float)
 
 print("Solution by NumPy:")
 
