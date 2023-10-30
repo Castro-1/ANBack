@@ -1,3 +1,4 @@
+import re
 from fastapi import APIRouter
 from methods.part1.objects import Bisection
 from methods.part1.Biseccion import biseccion
@@ -10,8 +11,9 @@ async def root():
 
 @router.post("/biseccion")
 async def method(params: Bisection):
-    fun,a,b,tol,niter = params
-    return biseccion(fun[1],a[1],b[1],tol[1],niter[1])
+    fun, a, b, tol, niter = params.fun, params.a, params.b, params.tol, params.niter
+    fun = re.sub(r'\^', '**', fun)
+    return biseccion(fun,a,b,tol,niter)
 
 @router.get("/reglafalsa")
 async def reglaFalsa():
