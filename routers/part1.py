@@ -13,6 +13,9 @@ async def root():
 async def method(params: Bisection):
     fun, a, b, tol, niter = params.fun, params.a, params.b, params.tol, params.niter
     fun = re.sub(r'\^', '**', fun)
+    fun = re.sub(r'\blog\b', 'math.log10', fun)
+    fun = re.sub(r'\bln\b', 'math.log', fun)
+    print(fun)
     return biseccion(fun,a,b,tol,niter)
 
 @router.get("/reglafalsa")
