@@ -6,3 +6,4 @@ class Bisection(BaseModel):
     b: float
     tol: float
     niter: int
+    error: int

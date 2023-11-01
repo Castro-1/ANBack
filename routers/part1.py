@@ -11,12 +11,12 @@ async def root():
 
 @router.post("/biseccion")
 async def method(params: Bisection):
-    fun, a, b, tol, niter = params.fun, params.a, params.b, params.tol, params.niter
+    fun, a, b, tol, niter, error = params.fun, params.a, params.b, params.tol, params.niter, params.error
     fun = re.sub(r'\^', '**', fun)
     fun = re.sub(r'\blog\b', 'math.log10', fun)
     fun = re.sub(r'\bln\b', 'math.log', fun)
     print(fun)
-    return biseccion(fun,a,b,tol,niter)
+    return biseccion(fun,a,b,tol,niter,error)
 
 @router.get("/reglafalsa")
 async def reglaFalsa():

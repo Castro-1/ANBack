@@ -4,7 +4,13 @@ import math
 #import wdb
 #wdb.set_trace()
 
-def biseccion(fun,a,b,tol,niter):
+def biseccion(fun,a,b,tol,niter,error):
+	def current_error(xm,xa):
+		if error == 0:
+			return abs(Xm-Xa)
+		else:
+			return abs(Xm-Xa)/Xm
+	
 	fm=[]
 	E=[]
 	A=[]
@@ -57,7 +63,7 @@ def biseccion(fun,a,b,tol,niter):
 			B.append(b)
 			X.append(x)
 			fm.append(fe)
-			Error=abs(Xm-Xa)
+			Error=current_error(Xm,Xa)
 			E.append(Error)
 			c=c+1
 		if fe==0:
@@ -79,4 +85,4 @@ def biseccion(fun,a,b,tol,niter):
 		# print("El intervalo es inadecuado")
 		return {"error": "intervalo inadecuado"}
 
-# print(biseccion("x**3 - x**2  + 2",-200,300,1e-3,100))
+# print(biseccion("x**3 - x**2  + 2",-200,300,1e-3,100,0))
