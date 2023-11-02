@@ -1,6 +1,6 @@
 import re
 from fastapi import APIRouter
-from methods.part1.objects import Bisection
+from routers.objects import Bisection
 from methods.part1.Biseccion import biseccion
 
 router = APIRouter(prefix="/part1",tags=["part1"],responses={404:{"message":"Metodo no encontrado."}})
@@ -19,21 +19,21 @@ async def method(params: Bisection):
     return biseccion(fun,a,b,tol,niter,error)
 
 @router.get("/reglafalsa")
-async def reglaFalsa():
+async def method():
     return "Metodo regla falsa"
 
 @router.get("/puntofijo")
-async def puntoFijo():
+async def method():
     return "Metodo punto fijo"
 
 @router.get("/newton")
-async def newton():
+async def method():
     return "Metodo newton"
 
 @router.get("/secante")
-async def secante():
+async def method():
     return "Metodo secante"
 
 @router.get("/raicesmultiples")
-async def raicesMultiples():
+async def method():
     return "Metodo raices multiples"

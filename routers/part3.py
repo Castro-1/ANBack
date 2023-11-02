@@ -7,17 +7,17 @@ async def root():
     return "Bienvenido a parte 3"
 
 @router.get("/vandermonde")
-async def vandermonde():
+async def method():
     return "Metodo vandermonde"
 
 @router.get("/newton")
-async def newton():
+async def method():
     return "Metodo newton"
 
 @router.get("/lagrange")
-async def lagrange():
+async def method():
     return "Metodo lagrange"
 
 @router.get("/spline")
-async def spline():
+async def method():
     return "Metodo spline"
