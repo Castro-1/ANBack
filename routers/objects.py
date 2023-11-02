@@ -1,9 +1,18 @@
 from pydantic import BaseModel
 
-class Bisection(BaseModel):
+class BaseInput(BaseModel):
     fun: str 
-    a: float 
-    b: float
     tol: float
     niter: int
     error: int
+
+class IntervalInput(BaseInput):
+    a: float 
+    b: float
+
+class FixedPoint(IntervalInput):
+    dfun: str
+
+class Newton(BaseInput):
+    dfun: str
+    x: float
