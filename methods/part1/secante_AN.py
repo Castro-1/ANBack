@@ -1,65 +1,59 @@
 import numpy as np
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
-# MÉTODO DE LA SECANTE
+def metodo_de_la_secante(func_str, x0, x1, tol, niter, error):
+    # Convierte el string en una función ejecutable
+    func = lambda x: eval(func_str)
 
-# Función para la que se busca la raíz
-def f(x):
-    return x**3 - 2*x**2 - 5
+    resultados = {
+        "found": None,
+        "iteracion": [],
+        "x": [],
+        "f": [],
+        "e": []
+    }
 
-# Datos de prueba
-x0 = 1.0  # Valor inicial x0
-x1 = 2.0  # Valor inicial x1
-tolerancia = 1e-6  # Tolerancia para la convergencia
-max_iter = 100  # Máximo número de iteraciones
+    for i in range(niter):
+        f_x1 = func(x1)
+        f_x0 = func(x0)
 
-# Diccionario para almacenar resultados
-resultados = {
-    "found": None,
-    "iteracion": [],
-    "x de la iteración": [],
-    "f(x)": [],
-    "e": [] }
+        # Cálculo de la siguiente aproximación
+        x2 = x1 - (f_x1 * (x1 - x0)) / (f_x1 - f_x0)
 
-# Método de la secante
-for i in range(max_iter):
-    # Cálculo de la siguiente aproximación
-    x2 = x1 - (f(x1) * (x1 - x0)) / (f(x1) - f(x0))
+        # Cálculo del error relativo
+        error = abs((x2 - x1) / x2)
 
-    # Cálculo del error relativo
-    error = abs((x2 - x1) / x2)
+        # Almacenar resultados en el diccionario
+        resultados["iteracion"].append(i + 1)
+        resultados["x"].append(x2)
+        resultados["f"].append(func(x2))
+        resultados["e"].append(error)
 
-    # Almacenar resultados en el diccionario
-    resultados["iteracion"].append(i + 1)
-    resultados["x de la iteración"].append(x2)
-    resultados["f(x)"].append(f(x2))
-    resultados["e"].append(error)
+        # Comprobar convergencia
+        if error < tol:
+            resultados["found"] = 1
+            break
+        elif i == niter - 1:
+            resultados["found"] = 0
 
-    # Comprobar convergencia
-    if error < tolerancia:
-        resultados["found"] = 1
-        break
-    elif i == max_iter - 1:
-        resultados["found"] = 0
+        # Actualizar valores para la siguiente iteración
+        x0 = x1
+        x1 = x2
 
-    # Actualizar valores para la siguiente iteración
-    x0 = x1
-    x1 = x2
+    for key in resultados:
+        print(f"{key}: {resultados[key]}")
+
+    # Gráfica de la función y las aproximaciones
+    #x = np.linspace(0, 3, 400)
+    #y = [func(val) for val in x]
+    #plt.plot(x, y, label='f(x)')
+    #plt.scatter(resultados["x"], resultados["f"], color='red', marker='o', label='Aproximaciones')
+    #plt.xlabel('x')
+    #plt.ylabel('f(x)')
+    #plt.legend()
+    #plt.title('Método de la Secante')
+    #plt.grid()
+    #plt.show()
 
 
-
-for key in resultados:
-    print(f"{key}: {resultados[key]}")
-
-# Gráfica de la función y las aproximaciones
-#x = np.linspace(0, 3, 400)
-#y = f(x)
-#print(resultados)
-#plt.plot(x, y, label='f(x)')
-#plt.scatter(resultados["x de la iteración"], resultados["f(x)"], color='red', marker='o', label='Aproximaciones')
-#plt.xlabel('x')
-#plt.ylabel('f(x)')
-#plt.legend()
-#plt.title('Método de la Secante')
-#plt.grid()
-#plt.show()
+metodo_de_la_secante("x**3 - 2*x**2 - 5", 1.0, 2.0, 1e-6, 100, 0)
