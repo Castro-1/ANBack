@@ -1,7 +1,7 @@
-import re
 from fastapi import APIRouter
-from routers.objects import IntervalInput, FixedPoint, Newton
+from routers.features import IntervalInput, FixedPoint, Newton, format_function
 from methods.part1.Biseccion import biseccion
+from methods.part1.Secante import secante
 
 router = APIRouter(prefix="/part1",tags=["part1"],responses={404:{"message":"Metodo no encontrado."}})
 
@@ -12,10 +12,7 @@ async def root():
 @router.post("/biseccion")
 async def method(params: IntervalInput):
     fun, a, b, tol, niter, error = params.fun, params.a, params.b, params.tol, params.niter, params.error
-    fun = re.sub(r'\^', '**', fun)
-    fun = re.sub(r'\blog\b', 'math.log10', fun)
-    fun = re.sub(r'\bln\b', 'math.log', fun)
-    print(fun)
+    fun = format_function(fun)
     return biseccion(fun,a,b,tol,niter,error)
 
 @router.post("/reglafalsa")
@@ -36,7 +33,8 @@ async def method(params: Newton):
 @router.post("/secante")
 async def method(params: IntervalInput):
     fun, a, b, tol, niter, error = params.fun, params.a, params.b, params.tol, params.niter, params.error
-    return "Metodo secante"
+    fun = format_function(fun)
+    return secante(fun, a, b, tol, niter, error)
 
 @router.post("/raicesmultiples")
 async def method():

@@ -5,11 +5,11 @@ import math
 #wdb.set_trace()
 
 def biseccion(fun,a,b,tol,niter,error):
-	def current_error(xm,xa):
+	def current_error(x2,x1):
 		if error == 0:
-			return abs(Xm-Xa)
+			return abs(x2-x1)
 		else:
-			return abs(Xm-Xa)/Xm
+			return abs(x2-x1)/x2
 	
 	fm=[]
 	E=[]

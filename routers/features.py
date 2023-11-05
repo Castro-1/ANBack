@@ -1,5 +1,14 @@
+import re
 from pydantic import BaseModel
 
+def format_function(fun):
+    fun = re.sub(r'\^', '**', fun)
+    fun = re.sub(r'\blog\b', 'math.log10', fun)
+    fun = re.sub(r'\bln\b', 'math.log', fun)
+    return fun
+
+
+# Objetos
 class BaseInput(BaseModel):
     fun: str 
     tol: float
