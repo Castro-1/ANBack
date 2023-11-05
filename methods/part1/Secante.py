@@ -15,7 +15,6 @@ def secante(func_str, x0, x1, tol, niter, error):
 
     resultados = {
         "found": None,
-        "iteracion": [],
         "x": [],
         "f": [],
         "e": []
@@ -32,7 +31,6 @@ def secante(func_str, x0, x1, tol, niter, error):
         err = current_error(x2,x1)
 
         # Almacenar resultados en el diccionario
-        resultados["iteracion"].append(i + 1)
         resultados["x"].append(x2)
         resultados["f"].append(func(x2))
         resultados["e"].append(err)
