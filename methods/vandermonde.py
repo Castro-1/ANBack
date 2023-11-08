@@ -4,8 +4,8 @@ import sympy as sym
 import matplotlib.pyplot as plt
 
 # INGRESO
-xi = [0,0.2,0.3,0.4]
-fi = [1,1.6,1.7,2.0]
+xi = [5,4,3,1]
+fi = [12,9,8,6]
 # muestras = tramos+1
 muestras = 101
 
@@ -56,6 +56,7 @@ print('los coeficientes del polinomio: ')
 print(coeficiente)
 print('Polinomio de interpolación: ')
 print(polinomio)
+print("barbosa:",eval(str(polinomio),{"x": 1.5}))
 print('\n formato pprint')
 sym.pprint(polinomio)
 
