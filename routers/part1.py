@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from routers.features import IntervalInput, FixedPoint, Newton, format_function
+from routers.features import IntervalInput, Newton, FixedPoint, format_function
 from methods.part1.Biseccion import biseccion
 from methods.part1.Secante import secante
 from methods.part1.Newton import newton
@@ -25,16 +25,16 @@ async def method(params: IntervalInput):
 
 @router.post("/puntofijo")
 async def method(params: FixedPoint):
-    fun, dfun, x0, tol, niter, error = params.fun, params.dfun, params.x0, params.tol, params.niter, params.error
+    fun, x0, tol, niter, error = params.fun, params.dfun, params.x0, params.tol, params.niter, params.error
     fun = format_function(fun)
     dfun = format_function(dfun)
     return punto_fijo(fun, dfun, x0, tol, niter, error)
 
 @router.post("/newton")
 async def method(params: Newton):
-    fun, x, tol, niter, error = params.fun, params.x, params.tol, params.niter, params.error
+    fun, x0, tol, niter, error = params.fun, params.x0, params.tol, params.niter, params.error
     fun = format_function(fun)
-    return newton(fun, x, tol, niter, error)
+    return newton(fun, x0, tol, niter, error)
 
 @router.post("/secante")
 async def method(params: IntervalInput):
@@ -44,6 +44,6 @@ async def method(params: IntervalInput):
 
 @router.post("/raicesmultiples")
 async def method(params: Newton):
-    fun, x, tol, niter, error = params.fun, params.x, params.tol, params.niter, params.error
+    fun, x0, tol, niter, error = params.fun, params.x0, params.tol, params.niter, params.error
     fun = format_function(fun)
-    return newton_raices_multiples(fun, x, tol, niter, error)
+    return newton_raices_multiples(fun, x0, tol, niter, error)

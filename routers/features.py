@@ -20,10 +20,8 @@ class IntervalInput(BaseInput):
     a: float 
     b: float
 
-class FixedPoint(BaseInput):
-    dfun: str
+class Newton(BaseInput):
     x0: float
 
-class Newton(BaseInput):
+class FixedPoint(Newton):
     dfun: str
-    x: float

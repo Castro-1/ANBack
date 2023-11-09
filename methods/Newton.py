@@ -5,15 +5,15 @@ import math
 #wdb.set_trace()
 
 print("X0:")
-X0 = 2.0
+X0 = 2
 print("Tol:")
-Tol = 1e-6
+Tol = 0.001
 print("Niter:")
 Niter = 100
 print("Function:")
-Fun = "x**3 - 2*x**2 - 5"
+Fun = "x**3 + 4*(x**2) - 10"
 print("derivate Function df:")
-df = "3*x**2-4*x"
+df = "3*(x**2) + 8*x"
 
 fn=[]
 xn=[]

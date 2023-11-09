@@ -51,4 +51,4 @@ def newton(func_str, x0, tol, niter, error):
 
     return resultados
 
-# print(newton("x**3 - 2*x**2 - 5", 2.0, 1e-6, 100, 0))
+# print(newton("x**3 + 4*(x**2) - 10", 2.0, 0.001, 100, 0))
