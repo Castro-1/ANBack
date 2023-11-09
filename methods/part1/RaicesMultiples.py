@@ -49,4 +49,4 @@ def newton_raices_multiples(func_str, x0, tol, niter, error):
 
     return resultados
 
-newton_raices_multiples("x**3 - 2*x**2 - 5", 1.0, 1e-6, 100, 0)
+# newton_raices_multiples("x**3 - 2*x**2 - 5", 1.0, 1e-6, 100, 0)

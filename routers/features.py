@@ -5,6 +5,7 @@ def format_function(fun):
     fun = re.sub(r'\^', '**', fun)
     fun = re.sub(r'\blog\b', 'math.log10', fun)
     fun = re.sub(r'\bln\b', 'math.log', fun)
+    fun = re.sub(r'\bexp\b', 'math.exp', fun)
     return fun
 
 
@@ -19,8 +20,9 @@ class IntervalInput(BaseInput):
     a: float 
     b: float
 
-class FixedPoint(IntervalInput):
+class FixedPoint(BaseInput):
     dfun: str
+    x0: float
 
 class Newton(BaseInput):
     dfun: str

@@ -5,15 +5,15 @@ import math
 #wdb.set_trace()
 
 print("X0:")
-X0 = input()
+X0 = 0
 print("Tol:")
-Tol = float(input())
+Tol = 0.001
 print("Niter:")
-Niter = float(input())
+Niter = 100
 print("Function:")
-Fun = str(input())
+Fun = "math.exp(-x)-x"
 print("Function g:")
-g = str(input())
+g = "math.exp(-x)"
 
 fn=[]
 xn=[]
