@@ -46,4 +46,4 @@ def regla_falsa(func_str, a, b, tol, niter, error):
     return resultados
 
 
-regla_falsa("x**3 - 2*x**2 - 5", 1.0, 2.0, 1e-6, 100, 0)
+# regla_falsa("x**3 - 2*x**2 - 5", 1.0, 2.0, 1e-6, 100, 0)

@@ -5,6 +5,7 @@ from methods.part1.Secante import secante
 from methods.part1.Newton import newton
 from methods.part1.PuntoFijo import punto_fijo
 from methods.part1.RaicesMultiples import newton_raices_multiples
+from methods.part1.ReglaFalsa import regla_falsa
 
 router = APIRouter(prefix="/part1",tags=["part1"],responses={404:{"message":"Metodo no encontrado."}})
 
@@ -21,7 +22,8 @@ async def method(params: IntervalInput):
 @router.post("/reglafalsa")
 async def method(params: IntervalInput):
     fun, a, b, tol, niter, error = params.fun, params.a, params.b, params.tol, params.niter, params.error
-    return "Metodo regla falsa"
+    fun = format_function(fun)
+    return regla_falsa(fun,a,b,tol,niter,error)
 
 @router.post("/puntofijo")
 async def method(params: FixedPoint):

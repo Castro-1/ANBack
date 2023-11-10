@@ -49,4 +49,4 @@ def newton_raices_multiples(func_str, x0, tol, niter, error):
 
     return resultados
 
-print(newton_raices_multiples("x**4 - 8*x**3 + 21*x**2 - 18*x", -1, 0.001, 100, 0))
+# print(newton_raices_multiples("x**4 - 8*x**3 + 21*x**2 - 18*x", -1, 0.001, 100, 0))
