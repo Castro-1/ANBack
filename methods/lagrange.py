@@ -1,60 +1,40 @@
-# divisoresL solo para mostrar valores
 import numpy as np
-import sympy as sym
 import matplotlib.pyplot as plt
+from sympy import symbols, simplify
 
-# INGRESO , Datos de prueba
-xi = np.array([0, 0.2, 0.3, 0.4])
-fi = np.array([1, 1.6, 1.7, 2.0])
+def lagrange_interpolation_polynomial(x, y):
+    x_sym = symbols('x')
+    lagrange_poly = 0
 
-# PROCEDIMIENTO
-# Polinomio de Lagrange
-n = len(xi)
-x = sym.Symbol('x')
-polinomio = 0
-divisorL = np.zeros(n, dtype = float)
-for i in range(0,n,1):
-    
-    # Termino de Lagrange
-    numerador = 1
-    denominador = 1
-    for j  in range(0,n,1):
-        if (j!=i):
-            numerador = numerador*(x-xi[j])
-            denominador = denominador*(xi[i]-xi[j])
-    terminoLi = numerador/denominador
+    for i in range(len(x)):
+        term = 1
+        for j in range(len(x)):
+            if i != j:
+                term *= (x_sym - x[j]) / (x[i] - x[j])
+        lagrange_poly += term * y[i]
 
-    polinomio = polinomio + terminoLi*fi[i]
-    divisorL[i] = denominador
+    return lagrange_poly
 
-# simplifica el polinomio
-polisimple = polinomio.expand()
+# Datos de ejemplo
+x = np.array([0, 1, 2, 3, 4])
+y = np.array([0, 1, 4, 10 , 16])
 
-# para evaluación numérica
-px = sym.lambdify(x,polisimple)
+# Crear el polinomio de Lagrange para la interpolación
+polynomial = lagrange_interpolation_polynomial(x, y)
+simplified_poly = simplify(polynomial)
 
-# Puntos para la gráfica
-muestras = 101
-a = np.min(xi)
-b = np.max(xi)
-pxi = np.linspace(a,b,muestras)
-pfi = px(pxi)
+# Mostrar el polinomio simplificado
+print("Polinomio de Lagrange simplificado:")
+print(simplified_poly)
 
-# SALIDA
-print('    valores de fi: ',fi)
-print('divisores en L(i): ',divisorL)
-print()
-print('Polinomio de Lagrange, expresiones')
-print(polinomio)
-print()
-print('Polinomio de Lagrange: ')
-print(polisimple)
+# Graficar el polinomio (opcional)
+x_vals = np.linspace(0, 4, 100)
+y_vals = [simplified_poly.subs('x', val) for val in x_vals]
 
-# Gráfica
-plt.plot(xi,fi,'o', label = 'Puntos')
-plt.plot(pxi,pfi, label = 'Polinomio')
-plt.legend()
-plt.xlabel('xi')
-plt.ylabel('fi')
-plt.title('Interpolación Lagrange')
+plt.figure(figsize=(8, 6))
+plt.plot(x_vals, y_vals, label='Polinomio de Lagrange', color='red')
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.title('Interpolación de Lagrange (Polinomio simplificado)')
+plt.grid(True)
 plt.show()
