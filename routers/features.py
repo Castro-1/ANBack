@@ -45,3 +45,17 @@ class BaseMatrixInput(BaseModel):
 
 class SORInput(BaseMatrixInput):
     omega: float
+
+# Parte 3
+def convertInterpolationArrays(x,y):
+    x = np.array(x)
+    y = np.array(y)
+    return x, y
+
+def parsePoly(poly):
+    poly = re.sub(r'\*\*', '^', poly)
+    return poly
+
+class BaseInterpolation(BaseModel):
+    x: list
+    y: list
