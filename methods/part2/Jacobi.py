@@ -20,7 +20,7 @@ def spectral_radius(A):
 
 def solve_jacobi(A, b, x0, tol, max_iter, error):
     spectral_r = spectral_radius(A)
-    sol, convergence = jacobi_method(A, b, x0, tol, max_iter)
+    sol, convergence = jacobi_method(A, b, x0, tol, max_iter, error)
     sol = sol.tolist()
     return {"radio": spectral_r, "converge": convergence, "sol": sol}
 

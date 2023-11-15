@@ -25,7 +25,7 @@ def spectral_radius(A):
 
 def solve_sor(A, b, x0, omega, tol, max_iter, error):
     spectral_r = spectral_radius(A)
-    sol, convergence, n_iter, x_values = sor_method(A, b, x0, omega, tol, max_iter)
+    sol, convergence, n_iter, x_values = sor_method(A, b, x0, omega, tol, max_iter, error)
     sol = sol.tolist()
     x_values = [x.tolist() for x in x_values]
     return {"radio": spectral_r, "converge": convergence, "sol": sol, "niter": n_iter, "x": x_values}
