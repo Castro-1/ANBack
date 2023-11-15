@@ -1,15 +1,6 @@
-
-import numpy as np
-import math
-import matplotlib.pyplot as plt
+from methods.part1.features import current_error
 
 def newton(func_str, x0, tol, niter, error):
-    def current_error(x1, x0):
-        if error == 0:
-            return abs(x1 - x0)
-        else:
-            return abs(x1 - x0) / x1
-
     # Convierte el string en una función ejecutable
     func = lambda x: eval(func_str)
 
@@ -32,7 +23,7 @@ def newton(func_str, x0, tol, niter, error):
         x1 = x0 - f_x0 / f_x0_prime
 
         # Cálculo del error relativo
-        err = current_error(x1, x0)
+        err = current_error(x1, x0, error)
 
         # Almacenar resultados en el diccionario
         resultados["x"].append(x1)

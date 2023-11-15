@@ -1,24 +1,10 @@
-import pandas as pd
-import numpy as np
-import math
-#import wdb
-#wdb.set_trace()
+from methods.part1.features import current_error
 
 def biseccion(fun,a,b,tol,niter,error):
-	def current_error(x2,x1):
-		if error == 0:
-			return abs(x2-x1)
-		else:
-			return abs(x2-x1)/x2
 	
 	fm=[]
 	E=[]
-	A=[]
-	B=[]
 	X=[]
-	print("fun",fun)
-	A.append(a)
-	B.append(b)
 	x=a
 	fi=eval(fun)
 	x=b
@@ -30,14 +16,14 @@ def biseccion(fun,a,b,tol,niter,error):
 		X.append(a)
 		fm.append(fi)
 		# print(a, "es raiz de f(x)")
-		return {"found":1,"a":A,"b":B,"x":X,"f":fm,"e":E}
+		return {"found":1,"x":X,"f":fm,"e":E}
 	elif fs==0:
 		s=b
 		E=0
 		X.append(b)
 		fm.append(fs)
 		# print(b, "es raiz de f(x)")
-		return {"found":1,"a":A,"b":B,"x":X,"f":fm,"e":E}
+		return {"found":1,"x":X,"f":fm,"e":E}
 	elif fs*fi<0:
 		c=0
 		Xm=(a+b)/2
@@ -59,27 +45,25 @@ def biseccion(fun,a,b,tol,niter,error):
 			Xm=(a+b)/2
 			x=Xm 
 			fe=eval(fun)
-			A.append(a)
-			B.append(b)
 			X.append(x)
 			fm.append(fe)
-			Error=current_error(Xm,Xa)
+			Error=current_error(Xm,Xa,error)
 			E.append(Error)
 			c=c+1
 		if fe==0:
 				s=x
 				# print(s,"es raiz de f(x)")
-				return {"found":1,"a":A,"b":B,"x":X,"f":fm,"e":E}
+				return {"found":1,"x":X,"f":fm,"e":E}
 		elif Error<tol:
 				s=x
 				# print(s,"es una aproamacion de un raiz de f(x) con una tolerancia", tol)
 				# print("Fm",fm)
 				# print("E",fm)
-				return {"found":1,"a":A,"b":B,"x":X,"f":fm,"e":E}
+				return {"found":1,"x":X,"f":fm,"e":E}
 		else:
 				s=x
 				# print("Fracaso en ",niter, " iteraciones ") 
-				return {"found":0,"a":A,"b":B,"x":X,"f":fm,"e":E}
+				return {"found":0,"x":X,"f":fm,"e":E}
 
 	else:
 		# print("El intervalo es inadecuado")

@@ -1,17 +1,10 @@
-import math
 import sympy as sp
-import matplotlib.pyplot as plt
+from methods.part1.features import current_error
 
 def newton_raices_multiples(func_str, x0, tol, niter, error):
     x = sp.Symbol('x')
     func = sp.sympify(func_str)
     func_prime = sp.diff(func, x)
-
-    def current_error(x1, x0):
-        if error == 0:
-            return abs(x1 - x0)
-        else:
-            return abs(x1 - x0) / abs(x1)
 
     resultados = {
         "found": None,
@@ -33,7 +26,7 @@ def newton_raices_multiples(func_str, x0, tol, niter, error):
 
         x1 = x0 - f_x0 / f_x0_prime
 
-        err = current_error(x1, x0)
+        err = current_error(x1, x0, error)
 
         resultados["x"].append(float(x1))
         resultados["f"].append(float(func.subs(x, x1)))

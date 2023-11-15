@@ -1,14 +1,6 @@
-import numpy as np
-import math
-import matplotlib.pyplot as plt
+from methods.part1.features import current_error
 
 def secante(func_str, x0, x1, tol, niter, error):
-    def current_error(x2,x1):
-        if error == 0:
-            return abs(x2-x1)
-        else:
-            return abs(x2-x1)/x2
-
 
     # Convierte el string en una función ejecutable
     func = lambda x: eval(func_str)
@@ -28,7 +20,7 @@ def secante(func_str, x0, x1, tol, niter, error):
         x2 = x1 - (f_x1 * (x1 - x0)) / (f_x1 - f_x0)
 
         # Cálculo del error relativo
-        err = current_error(x2,x1)
+        err = current_error(x2,x1,error)
 
         # Almacenar resultados en el diccionario
         resultados["x"].append(x2)

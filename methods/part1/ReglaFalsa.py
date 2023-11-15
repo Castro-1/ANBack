@@ -1,10 +1,6 @@
-def regla_falsa(func_str, a, b, tol, niter, error):
-    def current_error(x2, x1):
-        if error == 0:
-            return abs(x2 - x1)
-        else:
-            return abs(x2 - x1) / x2
+from methods.part1.features import current_error
 
+def regla_falsa(func_str, a, b, tol, niter, error):
     # Convierte el string en una función ejecutable
     func = lambda x: eval(func_str)
 
@@ -23,7 +19,7 @@ def regla_falsa(func_str, a, b, tol, niter, error):
         c = b - (f_b * (b - a)) / (f_b - f_a)
 
         # Cálculo del error relativo
-        err = current_error(c, b)
+        err = current_error(c, b, error)
 
         # Almacenar resultados en el diccionario
         resultados["x"].append(c)

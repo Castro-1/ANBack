@@ -1,14 +1,9 @@
 import numpy as np
 import math
-
+from methods.part1.features import current_error
 # Punto fijo
 
 def punto_fijo(func_str, gfunc_str, x0, tol, max_iter, error):
-    def current_error(x2, x1):
-        if error == 0:
-            return abs(x2 - x1)
-        else:
-            return abs(x2 - x1) / x2
 
     resultados = {
         "found": None,
@@ -23,7 +18,7 @@ def punto_fijo(func_str, gfunc_str, x0, tol, max_iter, error):
     for i in range(max_iter):
         f = func(x0)
         x1 = gfunc(x0)
-        err = current_error(x1, x0)
+        err = current_error(x1, x0,error)
 
         # Almacenar resultados en el diccionario
         resultados["x"].append(x1)
