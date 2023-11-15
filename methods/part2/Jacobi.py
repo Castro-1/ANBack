@@ -3,6 +3,7 @@ from numpy.linalg import norm
 
 def jacobi_method(A, b, x0, tol, max_iter, error):
     D = np.diag(np.diag(A))
+    X = []
     LU = A - D
     x = x0
     convergence = 0
@@ -12,7 +13,9 @@ def jacobi_method(A, b, x0, tol, max_iter, error):
             convergence = 1
             break
         x = x_new
-    return x, convergence
+        X.append(x)
+
+    return X, x, convergence
 
 def spectral_radius(A):
     eigenvalues, _ = np.linalg.eig(A)
@@ -20,9 +23,10 @@ def spectral_radius(A):
 
 def solve_jacobi(A, b, x0, tol, max_iter, error):
     spectral_r = spectral_radius(A)
-    sol, convergence = jacobi_method(A, b, x0, tol, max_iter, error)
+    x_values, sol, convergence = jacobi_method(A, b, x0, tol, max_iter, error)
     sol = sol.tolist()
-    return {"radio": spectral_r, "converge": convergence, "sol": sol}
+    x_values = [x.tolist() for x in x_values]
+    return {"radio": spectral_r, "converge": convergence, "sol": sol, "x": x_values}
 
 
 # print(solve_jacobi(np.array([[6, 5, 6], [-2, 5, 1], [-1, -1, 4]]), np.array([15, 15, 20]), np.array([1, 1, 1]),0.1,1000 ))
