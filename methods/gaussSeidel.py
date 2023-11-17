@@ -1,38 +1,15 @@
-# Método de Gauss-Seidel
-# solución de sistemas de ecuaciones
-# por métodos iterativos
-
 import numpy as np
 
-# CALCULAR MATRIZ T
-def T_matrix(A):
-    n = A.shape[0]
-    T_G = np.zeros((n, n))
-    
-    for i in range(n):
-        for j in range(n):
-            if i == j:
-                T_G[i][j] = 0
-            else:
-                T_G[i][j] = -A[i][j] / A[i][i]
-    
-    return T_G
-
-# CALCULAR RADIO ESPECTRAL
-def spectral_radius(matrix):
-    eigenvalues, _ = np.linalg.eig(matrix)
-    return max(abs(eigenvalues))
-
 # INGRESO
-A = np.array([[3. , -5., -8.],
-              [2.,  4.  , 6.],
-              [3., 4., -12.  ]])
+A = np.array([[5. , 1., 0.],
+              [1.,  5.  , 1.],
+              [0., 1., 5.  ]])
 
-B = np.array([-15.,12,8])
+B = np.array([6.,6.,6.])
 
-X0  = np.array([1.,1,1])
+X0  = np.array([0.,0.,0.])
 
-tolera = 5E-5
+tolera = 0.001
 iteramax = 100
 
 # PROCEDIMIENTO
@@ -71,12 +48,6 @@ if (itera>iteramax):
     X=0
 # revisa respuesta
 verifica = np.dot(A,X)
-
-# Matriz T
-T = T_matrix(A)
-
-# Radio Espectral
-print("Radio espectral: ",spectral_radius(T))
 
 # SALIDA
 print('respuesta X: ')

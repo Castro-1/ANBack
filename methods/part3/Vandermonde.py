@@ -4,7 +4,7 @@ import sympy as sym
 
 # # INGRESO
 # xi = [5,4,3,1]
-# B = [12,9,8,6]
+# fi = [12,9,8,6]
 
 
 def vandermonde(xi, B):
@@ -30,6 +30,9 @@ def vandermonde(xi, B):
         polinomio = polinomio + termino
 
     return str(polinomio)
+
+
+
 
 # Usando evaluación simbólica
 ##yin = np.zeros(muestras,dtype=float)
