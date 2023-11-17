@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from sympy import symbols, simplify
 
 def divided_differences(x, y):

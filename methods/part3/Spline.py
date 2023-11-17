@@ -1,7 +1,5 @@
-# Trazador (spline) lineal, grado 1
 import numpy as np
 import sympy as sym
-import matplotlib.pyplot as plt
 
 def spline(xi,fi):
     n = len(xi)

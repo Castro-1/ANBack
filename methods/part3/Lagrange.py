@@ -1,5 +1,3 @@
-import numpy as np
-import matplotlib.pyplot as plt
 from sympy import symbols, simplify
 
 def lagrange_interpolation_polynomial(x, y):
