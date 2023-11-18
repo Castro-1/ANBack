@@ -1,4 +1,5 @@
 from methods.part1.features import current_error
+import math
 
 def newton(func_str, x0, tol, niter, error):
     # Convierte el string en una función ejecutable

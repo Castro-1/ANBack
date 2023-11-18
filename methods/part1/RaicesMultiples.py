@@ -1,5 +1,6 @@
 import sympy as sp
 from methods.part1.features import current_error
+import math
 
 def newton_raices_multiples(func_str, x0, tol, niter, error):
     x = sp.Symbol('x')

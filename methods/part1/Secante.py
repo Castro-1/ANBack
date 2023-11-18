@@ -1,4 +1,5 @@
 from methods.part1.features import current_error
+import math
 
 def secante(func_str, x0, x1, tol, niter, error):
 

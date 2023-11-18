@@ -1,4 +1,5 @@
 from methods.part1.features import current_error
+import math
 
 def biseccion(fun,a,b,tol,niter,error):
 	
@@ -69,4 +70,4 @@ def biseccion(fun,a,b,tol,niter,error):
 		# print("El intervalo es inadecuado")
 		return {"error": "intervalo inadecuado"}
 
-# print(biseccion("x**3 - x**2  + 2",-200,300,1e-3,100,0))
+# print(biseccion("math.log10(x)-2",1,10,1e-3,100,0))

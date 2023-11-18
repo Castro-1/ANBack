@@ -9,6 +9,9 @@ def format_function(fun):
     fun = re.sub(r'\blog\b', 'math.log10', fun)
     fun = re.sub(r'\bln\b', 'math.log', fun)
     fun = re.sub(r'\bexp\b', 'math.exp', fun)
+    fun = re.sub(r'\btan\b', 'math.tan', fun)
+    fun = re.sub(r'\bsin\b', 'math.sin', fun)
+    fun = re.sub(r'\bcos\b', 'math.cos', fun)
     return fun
 
 
