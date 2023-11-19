@@ -12,18 +12,18 @@ async def root():
 
 @router.post("/jacobi")
 async def method(params: BaseMatrixInput):
-    A, b, x0, tol, niter, error = params.A, params.b, params.x0, params.tol, params.niter, params.error
+    A, b, x0, tol, orden, niter, error = params.A, params.b, params.x0, params.tol, params.norm, params.niter, params.error
     A, b, x0 = convertArrays(A, b, x0)
-    return solve_jacobi(A, b, x0, tol, niter, error)
+    return solve_jacobi(A, b, x0, tol, orden, niter, error)
 
 @router.post("/gaussseidel")
 async def method(params: BaseMatrixInput):
-    A, b, x0, tol, niter, error = params.A, params.b, params.x0, params.tol, params.niter, params.error
+    A, b, x0, tol, orden, niter, error = params.A, params.b, params.x0, params.tol, params.norm, params.niter, params.error
     A, b, x0 = convertArrays(A, b, x0)
-    return solve_gauss_seidel(A, b, x0, tol, niter, error)
+    return solve_gauss_seidel(A, b, x0, tol, orden, niter, error)
 
 @router.post("/sor")
 async def method(params: SORInput):
-    A, b, x0, omega, tol, niter, error = params.A, params.b, params.x0, params.omega, params.tol, params.niter, params.error
+    A, b, x0, omega, tol, orden, niter, error = params.A, params.b, params.x0, params.omega, params.tol, params.norm, params.niter, params.error
     A, b, x0 = convertArrays(A, b, x0)
-    return solve_sor(A, b, x0, omega, tol, niter, error)
+    return solve_sor(A, b, x0, omega, tol, orden, niter, error)

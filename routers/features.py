@@ -48,6 +48,7 @@ class BaseMatrixInput(BaseModel):
     b: list
     x0: list
     tol: float
+    norm: str
     niter: int
     error: int
 
