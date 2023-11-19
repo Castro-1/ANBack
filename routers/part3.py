@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from routers.features import BaseInterpolation, convertInterpolationArrays, parsePoly
 from methods.part3.Vandermonde import vandermonde
 from methods.part3.Lagrange import lagrange_interpolation_polynomial
-from methods.part3.Newton import newton_interpolation_polynomial
+from methods.part3.Newton import newton_interpolation
 from methods.part3.Spline import spline
 from methods.part3.Spline3 import spline3
 
@@ -22,7 +22,7 @@ async def method(params: BaseInterpolation):
 @router.post("/newton")
 async def method(params: BaseInterpolation):
     x,y = convertInterpolationArrays(params.x, params.y)
-    poly = newton_interpolation_polynomial(x,y)
+    poly = newton_interpolation(x,y)
     return parsePoly(poly)
 
 @router.post("/lagrange")

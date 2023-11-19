@@ -1,27 +1,21 @@
 import numpy as np
-from sympy import symbols, simplify
+import sympy as sp
+import matplotlib.pyplot as plt
 
-def divided_differences(x, y):
+def newton_interpolation(x, y):
     n = len(x)
-    coefficients = np.copy(y)
+    x_sym = sp.symbols('x')
+    coefficients = np.zeros(n)
+
+    for i in range(n):
+        coefficients[i] = y[i]
+
     for j in range(1, n):
         for i in range(n - 1, j - 1, -1):
             coefficients[i] = (coefficients[i] - coefficients[i - 1]) / (x[i] - x[i - j])
-    return coefficients
 
-def newton_interpolation_polynomial(x, y):
-    coefficients = divided_differences(x, y)
-    n = len(x)
-    x_sym = symbols('x')
-
-    def newton_polynomial(new_x):
-        result = coefficients[n - 1]
-        for i in range(n - 2, -1, -1):
-            result = result * (new_x - x[i]) + coefficients[i]
-        return result
-
-    newton_poly = newton_polynomial(x_sym)
-    simplified_poly = simplify(newton_poly)
+    interpolating_poly = sum([coefficients[i] * sp.prod([x_sym - x[k] for k in range(i)]) for i in range(n)])
+    simplified_poly = sp.simplify(interpolating_poly)
 
     return str(simplified_poly)
 
