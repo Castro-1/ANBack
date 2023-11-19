@@ -4,7 +4,12 @@ from pydantic import BaseModel
 
 
 # Parte 1
+def add_asterisk(match):
+    return match.group(1) + '*' + match.group(2)
+
+
 def format_function(fun):
+    fun = re.sub(r'(\d)(x)', add_asterisk, fun)
     fun = re.sub(r'\^', '**', fun)
     fun = re.sub(r'\blog\b', 'math.log10', fun)
     fun = re.sub(r'\bln\b', 'math.log', fun)

@@ -13,8 +13,16 @@ def regla_falsa(func_str, a, b, tol, niter, error):
     }
 
     for i in range(niter):
-        f_a = func(a)
-        f_b = func(b)
+        try:
+            f_a = func(a)
+        except:
+            return {"error": "Error al evaluar la función, ojo con a."}
+        
+        try:
+            f_b = func(b)
+        except:
+            return {"error": "Error al evaluar la función, ojo con b."}
+        
 
         # Cálculo de la siguiente aproximación usando regla falsa
         c = b - (f_b * (b - a)) / (f_b - f_a)

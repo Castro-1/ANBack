@@ -14,8 +14,15 @@ def secante(func_str, x0, x1, tol, niter, error):
     }
 
     for i in range(niter):
-        f_x1 = func(x1)
-        f_x0 = func(x0)
+        try:
+            f_x1 = func(x1)
+        except:
+            return {"error": "Error al evaluar la función, ojo con b."}
+        
+        try:
+            f_x0 = func(x0)
+        except:
+            return {"error": "Error al evaluar la función, ojo con a."}
 
         # Cálculo de la siguiente aproximación
         x2 = x1 - (f_x1 * (x1 - x0)) / (f_x1 - f_x0)

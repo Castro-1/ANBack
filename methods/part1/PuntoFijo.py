@@ -16,7 +16,10 @@ def punto_fijo(func_str, gfunc_str, x0, tol, max_iter, error):
     func = lambda x: eval(func_str)
 
     for i in range(max_iter):
-        f = func(x0)
+        try:
+            f = func(x0)
+        except:
+            return {"error": "Error al evaluar la función, ojo con el valor de x0."}
         x1 = gfunc(x0)
         err = current_error(x1, x0,error)
 
@@ -35,4 +38,5 @@ def punto_fijo(func_str, gfunc_str, x0, tol, max_iter, error):
 
     return resultados
 
-# print(punto_fijo("(10 / (x + 2)**(1/2))", 4.0, 1e-6, 100, 0))
+# print(punto_fijo("math.exp(-x)", "math.exp(-x)", 0.5, 1e-6, 100, 0))
+

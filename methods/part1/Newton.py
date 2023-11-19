@@ -3,7 +3,9 @@ import math
 
 def newton(func_str, x0, tol, niter, error):
     # Convierte el string en una función ejecutable
+
     func = lambda x: eval(func_str)
+    
 
     resultados = {
         "found": None,
@@ -13,7 +15,11 @@ def newton(func_str, x0, tol, niter, error):
     }
 
     for i in range(niter):
-        f_x0 = func(x0)
+        try:
+            f_x0 = func(x0)
+        except:
+            return {"error": "Error al evaluar la función, ojo con x0."}
+        
         f_x0_prime = (func(x0 + tol) - f_x0) / tol  # Cálculo del gradiente
 
         if f_x0_prime == 0:

@@ -27,7 +27,7 @@ async def method(params: IntervalInput):
 
 @router.post("/puntofijo")
 async def method(params: FixedPoint):
-    fun, x0, tol, niter, error = params.fun, params.dfun, params.x0, params.tol, params.niter, params.error
+    fun, dfun, x0, tol, niter, error = params.fun, params.dfun, params.x0, params.tol, params.niter, params.error
     fun = format_function(fun)
     dfun = format_function(dfun)
     return punto_fijo(fun, dfun, x0, tol, niter, error)

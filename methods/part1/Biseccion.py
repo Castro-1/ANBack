@@ -7,9 +7,15 @@ def biseccion(fun,a,b,tol,niter,error):
 	E=[]
 	X=[]
 	x=a
-	fi=eval(fun)
+	try:
+		fi=eval(fun)
+	except:
+		return {"error":"Error al evaluar la función, ojo con a."}
 	x=b
-	fs=eval(fun)
+	try:
+		fs=eval(fun)
+	except:
+		return {"error":"Error al evaluar la función, ojo con a."}
 
 	if fi==0:
 		s=a
