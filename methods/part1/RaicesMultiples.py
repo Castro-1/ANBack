@@ -1,10 +1,12 @@
 import sympy as sp
 from methods.part1.features import current_error
 import math
+import numpy as np
 
 def newton_raices_multiples(func_str, x0, tol, niter, error):
     x = sp.Symbol('x')
     func = sp.sympify(func_str)
+    print(func)
     func_prime = sp.diff(func, x)
 
     resultados = {

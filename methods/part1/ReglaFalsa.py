@@ -1,5 +1,6 @@
 from methods.part1.features import current_error
 import math
+import numpy as np
 
 def regla_falsa(func_str, a, b, tol, niter, error):
     # Convierte el string en una función ejecutable

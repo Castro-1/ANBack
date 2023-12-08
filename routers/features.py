@@ -11,12 +11,13 @@ def add_asterisk(match):
 def format_function(fun):
     fun = re.sub(r'(\d)(x)', add_asterisk, fun)
     fun = re.sub(r'\^', '**', fun)
-    fun = re.sub(r'\blog\b', 'math.log10', fun)
-    fun = re.sub(r'\bln\b', 'math.log', fun)
-    fun = re.sub(r'\bexp\b', 'math.exp', fun)
-    fun = re.sub(r'\btan\b', 'math.tan', fun)
-    fun = re.sub(r'\bsin\b', 'math.sin', fun)
-    fun = re.sub(r'\bcos\b', 'math.cos', fun)
+    fun = re.sub(r'\blog\b', 'np.log', fun)
+    fun = re.sub(r'\bln\b', 'np.log', fun)
+    fun = re.sub(r'\bexp\b', 'np.exp', fun)
+    fun = re.sub(r'\btan\b', 'np.tan', fun)
+    fun = re.sub(r'\bsin\b', 'np.sin', fun)
+    fun = re.sub(r'\bcos\b', 'np.cos', fun)
+    # print(fun)
     return fun
 
 

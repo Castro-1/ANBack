@@ -2,18 +2,25 @@ import numpy as np
 from methods.part2.features import current_error
 
 def sor_method(A, b, x0, omega, tol, orden, max_iter, error):
-    L = np.tril(A)
-    U = A - L
+    L = np.tril(A,-1)*-1
+    U = np.triu(A,1)*-1
+    print(L)
+    print(U)
+    D = np.diag(np.diag(A))
+    print(D)
     x = x0
     convergence = 0
     x_list = [x]
     n_iter = []
     
-    T = np.dot(np.linalg.inv(L + omega * np.diag(np.diag(A))), ((1 - omega) * L - omega * U))
+    T = np.dot(np.linalg.inv(D - omega * L), ((1 - omega) * D + omega * U))
+    print(T)
+    C = np.dot(omega*np.linalg.inv(D-omega*L), b)
+    print(C)
     
 
     for i in range(max_iter):
-        x_new = np.dot(np.linalg.inv(L + omega * np.diag(np.diag(A))), ((1 - omega) * np.dot(L, x) + omega * b))
+        x_new = np.dot(T,x)+C
         x_list.append(x_new)
         n_iter.append(i + 1)
         err = current_error(x_new, x, orden, error)

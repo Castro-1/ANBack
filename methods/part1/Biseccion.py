@@ -1,5 +1,5 @@
 from methods.part1.features import current_error
-import math
+import numpy as np
 
 def biseccion(fun,a,b,tol,niter,error):
 	

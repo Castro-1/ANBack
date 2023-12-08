@@ -31,6 +31,7 @@ def solve_jacobi(A, b, x0, tol, orden, max_iter, error):
     D = np.diag(np.diag(A))
     LU = A - D
     T = np.dot(np.linalg.inv(D), LU)
+    print(T)
     
     sol, convergence, n_iter, x_values = jacobi_method(A, b, x0, tol, orden, max_iter, error)
     spectral_r = spectral_radius(T)

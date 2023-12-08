@@ -1,7 +1,8 @@
 from methods.part1.features import current_error
-import math
+import numpy as np
 
 def newton(func_str, x0, tol, niter, error):
+    print(func_str)
     # Convierte el string en una función ejecutable
 
     func = lambda x: eval(func_str)
