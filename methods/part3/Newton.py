@@ -1,6 +1,5 @@
 import numpy as np
 import sympy as sp
-import matplotlib.pyplot as plt
 
 def newton_interpolation(x, y):
     n = len(x)
